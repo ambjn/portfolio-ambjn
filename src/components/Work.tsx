@@ -5,7 +5,7 @@ export default function Work() {
   return (
     <section id="work" className="py-14">
       <motion.h2
-        className="text-2xl font-semibold mb-12 flex items-center gap-3"
+        className="text-xl sm:text-2xl font-semibold mb-8 sm:mb-12 flex items-center gap-3"
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}

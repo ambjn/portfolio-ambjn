@@ -38,7 +38,7 @@ export default function Footer() {
   return (
     <motion.footer
       id="connect"
-      className="py-16 border-t border-white/10"
+      className="py-12 sm:py-16 border-t border-white/10"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
