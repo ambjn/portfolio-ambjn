@@ -1,6 +1,7 @@
 export const personalInfo = {
-  name: "Amber",
-  bio: "25, love to build & break stuff",
+  name: "Amber J",
+  tagline: "engineering things that (mostly) work",
+  bio: "25, curious dev with 3+ years of experience across Web3, WebRTC & Robotics\nshipped and scaled mobile apps & production A/V SDKs.",
   email: "jainanuamber@gmail.com",
 };
 
@@ -11,34 +12,29 @@ export const projects = [
     link: "https://eliowallet.vercel.app/",
   },
   {
-    title: "pills.trade",
+    title: "Mediasoup: Kotlin",
     description: "Another project showcasing your skills and creativity.",
-    link: "https://pills.trade",
+    link: "https://github.com/Huddle01/Kotlin-Client",
   },
-  // {
-  //   title: "Project Three",
-  //   description: "One more project to demonstrate your expertise.",
-  //   link: "https://example.com",
-  // },
 ];
 
 export const workExperience = [
   {
-    company: "Company Name",
-    role: "Your Role",
-    period: "2023 - Present",
-    description: "Brief description of what you did or are doing.",
-  },
-  {
-    company: "Previous Company",
-    role: "Previous Role",
-    period: "2021 - 2023",
+    company: "PillsTrade",
+    role: "Dev",
+    period: "Aug 2025 - Dec 2025",
     description: "Brief description of your responsibilities and achievements.",
   },
   {
-    company: "Earlier Company",
-    role: "Earlier Role",
-    period: "2019 - 2021",
+    company: "Huddle01",
+    role: "Mobile Engineer",
+    period: "Jul 2023 - Jul 2025",
+    description: "Brief description of what you did or are doing.",
+  },
+  {
+    company: "Nosh Robotics",
+    role: "SDE Intern",
+    period: "Oct 2022 - Apr 2023",
     description: "What you accomplished in this position.",
   },
 ];
