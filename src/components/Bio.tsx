@@ -5,7 +5,7 @@ export default function Bio() {
   return (
     <motion.section
       id="about"
-      className="py-24 sm:py-32"
+      className="pt-10 sm:pt-32"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -20,8 +20,19 @@ export default function Bio() {
           {personalInfo.name}
         </motion.h1>
 
+        {personalInfo.tagline && (
+          <motion.p
+            className="text-lg sm:text-xl italic text-neutral-300 mb-6 sm:mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+          >
+            {personalInfo.tagline}
+          </motion.p>
+        )}
+
         <motion.p
-          className="text-base sm:text-lg text-neutral-400 leading-relaxed max-w-2xl"
+          className="text-base sm:text-lg text-neutral-400 leading-relaxed max-w-2xl whitespace-pre-line"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
