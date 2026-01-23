@@ -12,7 +12,7 @@ export const projects = [
     link: "https://eliowallet.vercel.app/",
   },
   {
-    title: "Mediasoup: Kotlin",
+    title: "Mediasoup: Kotlin Client",
     description: "Another project showcasing your skills and creativity.",
     link: "https://github.com/Huddle01/Kotlin-Client",
   },
