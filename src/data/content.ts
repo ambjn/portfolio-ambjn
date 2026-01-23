@@ -8,12 +8,12 @@ export const projects = [
   {
     title: "Elio Wallet",
     description: "A brief description of what this project is about and what technologies you used.",
-    link: "https://example.com",
+    link: "https://eliowallet.vercel.app/",
   },
   {
     title: "pills.trade",
     description: "Another project showcasing your skills and creativity.",
-    link: "https://example.com",
+    link: "https://pills.trade",
   },
   // {
   //   title: "Project Three",
