@@ -39,11 +39,11 @@ export default function Projects() {
               <h3 className="text-xl sm:text-2xl font-semibold group-hover:text-white transition-colors">
                 {project.title}
               </h3>
-              <div className="flex-shrink-0 p-2 rounded-full bg-white/5 group-hover:bg-white/10 group-hover:scale-110 transition-all duration-300 text-neutral-400 group-hover:text-white">
+              <div className="shrink-0 p-2 rounded-full bg-white/5 group-hover:bg-white/10 group-hover:scale-110 transition-all duration-300 text-neutral-400 group-hover:text-white">
                 <ArrowUpRight className="w-5 h-5" />
               </div>
             </div>
-            <p className="text-neutral-400 leading-relaxed text-base sm:text-lg">
+            <p className="text-neutral-400 leading-relaxed text-base sm:text-lg whitespace-pre-line">
               {project.description}
             </p>
           </motion.a>

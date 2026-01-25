@@ -38,7 +38,7 @@ export default function Work() {
 
             <h4 className="text-neutral-400 font-medium mb-3">{job.role}</h4>
 
-            <p className="text-neutral-400 text-sm leading-relaxed max-w-2xl">
+            <p className="text-neutral-400 text-sm leading-relaxed max-w-2xl whitespace-pre-line">
               {job.description}
             </p>
           </motion.div>
