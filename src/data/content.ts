@@ -10,11 +10,36 @@ export const projects = [
     title: "Elio Wallet",
     description: "Your Solana stablecoins avenue.\nSpend. Trade. Predict.\nAll-in-one. All on Solana.",
     link: "https://eliowallet.vercel.app/",
+    featured: true,
+    images: [
+      "/projects/elio-wallet/1.PNG",
+      "/projects/elio-wallet/2.PNG",
+      "/projects/elio-wallet/3.PNG",
+    ],
   },
+  {
+    title: "SolSettl",
+    description: "split bills. settle instantly.\npowered by solana & stablecoins\nyour crypto-native onchain expense splitting",
+    link: "https://github.com/ambjn",
+    featured: true,
+    images: [
+      "/projects/solsettl/1.jpg",
+      "/projects/solsettl/2.jpg",
+      "/projects/solsettl/3.jpg",
+      '/projects/solsettl/4.jpg',
+      '/projects/solsettl/5.jpg',
+      '/projects/solsettl/6.jpg',
+    ],
+  },
+
   {
     title: "Mediasoup: Kotlin Client",
     description: "Native Android SDK for real-time A/V built on WebRTC with MediaSoup SFU.\nCurrently powers a Web3 startup with 20K+ MAU.",
     link: "https://github.com/Huddle01/Kotlin-Client",
+  },
+  {
+    title: "What's Next?",
+    description: "Currently exploring AI agents & on-chain infra.\nAlways building. Always shipping.",
   },
 ];
 
