@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { projects } from "../data/content";
+import { projects, type Project, type ProjectLinks } from "../data/content";
 
 const ArrowUpRight = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -15,9 +15,9 @@ const LINK_LABELS: Record<string, string> = {
   website: "Website",
 };
 
-const ProjectLinks = ({ links, size = "md" }: { links?: Record<string, string>, size?: "sm" | "md" }) => {
+const ProjectLinks = ({ links, size = "md" }: { links?: ProjectLinks; size?: "sm" | "md" }) => {
   if (!links) return null;
-  const entries = Object.entries(links).filter(([, href]) => !!href);
+  const entries = (Object.entries(links) as [string, string | undefined][]).filter((entry): entry is [string, string] => !!entry[1]);
   if (!entries.length) return null;
 
   const base = size === "sm"
@@ -41,8 +41,8 @@ const ProjectLinks = ({ links, size = "md" }: { links?: Record<string, string>, 
   );
 };
 
-const featuredProjects = projects.filter((p: any) => p.featured);
-const regularProjects = projects.filter((p: any) => !p.featured);
+const featuredProjects = (projects as Project[]).filter((p) => p.featured);
+const regularProjects = (projects as Project[]).filter((p) => !p.featured);
 
 const FeaturedShowcase = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -54,7 +54,7 @@ const FeaturedShowcase = () => {
       <div className="rounded-3xl border border-white/10 bg-white/5 overflow-hidden">
         {/* Tab bar */}
         <div className="flex border-b border-white/10 overflow-x-auto no-scrollbar">
-          {featuredProjects.map((p: any, i: number) => (
+          {featuredProjects.map((p, i) => (
             <button
               key={i}
               onClick={() => setActiveIndex(i)}
@@ -97,7 +97,7 @@ const FeaturedShowcase = () => {
 
             {/* Images */}
             <div className="relative w-full h-[260px] flex gap-3 overflow-x-auto no-scrollbar items-center">
-              {(active.images || []).map((img: string, idx: number) => (
+              {(active.images ?? []).map((img, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: 12 }}
@@ -145,9 +145,9 @@ const FeaturedShowcase = () => {
   );
 };
 
-const RegularProject = ({ project, index }: { project: any, index: number }) => (
+const RegularProject = ({ project, index }: { project: Project; index: number }) => (
   <motion.div
-    className="group relative px-6 py-7 flex flex-col gap-4 rounded-2xl bg-white/5 border border-white/10 transition-all duration-300"
+    className="px-6 py-7 flex flex-col gap-4 rounded-2xl bg-white/5 border border-white/10"
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
@@ -180,7 +180,7 @@ export default function Projects() {
 
         {regularProjects.length > 0 && (
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-            {regularProjects.map((project: any, index: number) => (
+            {regularProjects.map((project, index) => (
               <RegularProject key={index} project={project} index={index} />
             ))}
           </div>

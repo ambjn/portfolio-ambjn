@@ -1,3 +1,18 @@
+export type ProjectLinks = {
+  github?: string;
+  appStore?: string;
+  testflight?: string;
+  website?: string;
+};
+
+export type Project = {
+  title: string;
+  description: string;
+  links?: ProjectLinks;
+  featured?: boolean;
+  images?: string[];
+};
+
 export const personalInfo = {
   name: "Amber J",
   tagline: "engineering things that (mostly) work",
