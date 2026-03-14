@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: "Amber J",
   tagline: "engineering things that (mostly) work",
-  bio: "25 y/o dev with 3+ years across Web3, WebRTC & Robotics.\nshipped mobile apps & production A/V SDKs at scale.",
+  bio: "25 y/o dev with 3+ years across AI, Web3 & Robotics.\nshipping mobile apps, A/V SDKs & AI-powered products.",
   email: "jainanuamber@gmail.com",
 };
 
@@ -33,13 +33,24 @@ export const projects = [
   },
 
   {
+    title: "Grovi",
+    description: "describe your app. ship it in seconds.\nAI-powered mobile app generator.\nspec → UI → preview. all from a prompt.",
+    link: "https://testflight.apple.com/join/E1ac9vN6",
+    featured: true,
+    images: [
+      "/projects/grovi/1.PNG",
+      "/projects/grovi/2.PNG",
+      "/projects/grovi/3.PNG",
+    ],
+  },
+  {
+    title: "alya",
+    description: "your AI language learning companion.\nconversational practice with real-time voice.\npowered by OpenAI & ElevenLabs TTS.",
+  },
+  {
     title: "Mediasoup: Kotlin Client",
     description: "Native Android SDK for real-time A/V built on WebRTC with MediaSoup SFU.\nCurrently powers a Web3 startup with 20K+ MAU.",
     link: "https://github.com/Huddle01/Kotlin-Client",
-  },
-  {
-    title: "What's Next?",
-    description: "Currently exploring AI agents & on-chain infra.\nAlways building. Always shipping.",
   },
 ];
 
