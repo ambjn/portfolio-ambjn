@@ -8,64 +8,118 @@ const ArrowUpRight = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const FeaturedProject = ({ project, index }: { project: any, index: number }) => {
-  const images = project.images || [];
+const LINK_LABELS: Record<string, string> = {
+  github: "GitHub",
+  appStore: "App Store",
+  testflight: "TestFlight",
+  website: "Website",
+};
+
+const ProjectLinks = ({ links, size = "md" }: { links?: Record<string, string>, size?: "sm" | "md" }) => {
+  if (!links) return null;
+  const entries = Object.entries(links).filter(([, href]) => !!href);
+  if (!entries.length) return null;
+
+  const base = size === "sm"
+    ? "inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium border transition-colors"
+    : "inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border transition-colors";
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {entries.map(([key, href]) => (
+        <a
+          key={key}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${base} bg-white/10 hover:bg-white/20 text-white border-white/10 hover:border-white/20`}
+        >
+          {LINK_LABELS[key] ?? key} <ArrowUpRight className={size === "sm" ? "w-3 h-3" : "w-4 h-4"} />
+        </a>
+      ))}
+    </div>
+  );
+};
+
+const featuredProjects = projects.filter((p: any) => p.featured);
+const regularProjects = projects.filter((p: any) => !p.featured);
+
+const FeaturedShowcase = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const active = featuredProjects[activeIndex];
 
   return (
     <>
-      <motion.div
-        className="col-span-1 md:col-span-2 relative bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:bg-white/10 transition-all duration-500 group"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 md:p-10 items-center">
-          <div className="flex flex-col justify-center items-start">
-            <h3 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-linear-to-r from-white to-white/60 mb-4">
-              {project.title}
-            </h3>
-            <p className="text-lg text-neutral-400 leading-relaxed whitespace-pre-line mb-8">
-              {project.description}
-            </p>
-
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-medium transition-colors border border-white/10 hover:border-white/20"
+      <div className="rounded-3xl border border-white/10 bg-white/5 overflow-hidden">
+        {/* Tab bar */}
+        <div className="flex border-b border-white/10 overflow-x-auto no-scrollbar">
+          {featuredProjects.map((p: any, i: number) => (
+            <button
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              className={`relative px-5 py-3.5 text-sm font-medium whitespace-nowrap transition-colors duration-200 ${
+                i === activeIndex ? "text-white" : "text-neutral-500 hover:text-neutral-300"
+              }`}
             >
-              Visit Project <ArrowUpRight className="w-4 h-4" />
-            </a>
-          </div>
+              {p.title}
+              {i === activeIndex && (
+                <motion.div
+                  layoutId="tab-indicator"
+                  className="absolute bottom-0 left-0 right-0 h-px bg-white"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+            </button>
+          ))}
+        </div>
 
-          <div className="relative w-full h-[300px] flex gap-4 overflow-x-auto no-scrollbar items-center mask-linear-to-r">
-            {images.length > 0 ? (
-              images.map((img: string, idx: number) => (
+        {/* Content */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 p-7 md:p-10 items-center"
+          >
+            {/* Info */}
+            <div className="flex flex-col justify-center items-start">
+              <h3 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-linear-to-r from-white to-white/60 mb-3">
+                {active.title}
+              </h3>
+              <p className="text-base text-neutral-400 leading-relaxed whitespace-pre-line mb-7">
+                {active.description}
+              </p>
+              <ProjectLinks links={active.links} />
+            </div>
+
+            {/* Images */}
+            <div className="relative w-full h-[260px] flex gap-3 overflow-x-auto no-scrollbar items-center">
+              {(active.images || []).map((img: string, idx: number) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: 12 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  transition={{ duration: 0.3, delay: idx * 0.06 }}
                   className="h-full shrink-0 cursor-zoom-in"
                   onClick={() => setSelectedImage(img)}
                   whileHover={{ scale: 1.02 }}
                 >
                   <img
                     src={img}
-                    alt={`${project.title} screenshot ${idx + 1}`}
-                    className="h-full w-auto object-contain rounded-lg border border-white/10 bg-black/20"
+                    alt={`${active.title} screenshot ${idx + 1}`}
+                    className="h-full w-auto object-contain rounded-xl border border-white/10 bg-black/20"
                   />
                 </motion.div>
-              ))
-            ) : (
-              <div className="w-full h-full bg-linear-to-br from-indigo-500/20 to-purple-500/20 rounded-xl" />
-            )}
-          </div>
-        </div>
-      </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
+      {/* Lightbox */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
@@ -77,7 +131,7 @@ const FeaturedProject = ({ project, index }: { project: any, index: number }) =>
           >
             <motion.img
               src={selectedImage}
-              alt="Project visualization"
+              alt="Project screenshot"
               className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -92,37 +146,26 @@ const FeaturedProject = ({ project, index }: { project: any, index: number }) =>
 };
 
 const RegularProject = ({ project, index }: { project: any, index: number }) => (
-  <motion.a
-    href={project.link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="group relative px-6 py-8 md:px-8 md:py-10 min-h-[250px] flex flex-col justify-between rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-300 transform hover:-translate-y-1"
+  <motion.div
+    className="group relative px-6 py-7 flex flex-col gap-4 rounded-2xl bg-white/5 border border-white/10 transition-all duration-300"
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
   >
-    <div>
-      <div className="flex justify-between items-start gap-4 mb-6">
-        <h3 className="text-xl md:text-2xl font-semibold group-hover:text-white transition-colors">
-          {project.title}
-        </h3>
-        <div className="shrink-0 p-2 rounded-full bg-white/5 group-hover:bg-white/10 group-hover:rotate-45 transition-all duration-300 text-neutral-400 group-hover:text-white">
-          <ArrowUpRight className="w-5 h-5" />
-        </div>
-      </div>
-      <p className="text-neutral-400 leading-relaxed text-base whitespace-pre-line">
-        {project.description}
-      </p>
-    </div>
-  </motion.a>
+    <h3 className="text-xl font-semibold">{project.title}</h3>
+    <p className="text-neutral-400 leading-relaxed text-sm whitespace-pre-line">
+      {project.description}
+    </p>
+    <ProjectLinks links={project.links} size="sm" />
+  </motion.div>
 );
 
 export default function Projects() {
   return (
     <section id="projects" className="pt-20 pb-10">
       <motion.h2
-        className="text-xl sm:text-2xl font-semibold mb-8 sm:mb-12 flex items-center gap-3"
+        className="text-xl sm:text-2xl font-semibold mb-8 sm:mb-10 flex items-center gap-3"
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
@@ -132,13 +175,15 @@ export default function Projects() {
         Featured Work ☆
       </motion.h2>
 
-      <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
-        {projects.map((project: any, index) =>
-          project.featured ? (
-            <FeaturedProject key={index} project={project} index={index} />
-          ) : (
-            <RegularProject key={index} project={project} index={index} />
-          )
+      <div className="flex flex-col gap-6">
+        <FeaturedShowcase />
+
+        {regularProjects.length > 0 && (
+          <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
+            {regularProjects.map((project: any, index: number) => (
+              <RegularProject key={index} project={project} index={index} />
+            ))}
+          </div>
         )}
       </div>
     </section>

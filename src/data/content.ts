@@ -7,9 +7,42 @@ export const personalInfo = {
 
 export const projects = [
   {
+    title: "alya",
+    description: "your AI language learning companion.\nconversational practice with real-time voice.",
+    links: {
+      appStore: "https://apps.apple.com/us/app/alya-your-ai-language-buddy/id6758835552",
+      website: "https://www.alyacompanion.xyz/",
+    },
+    featured: true,
+    images: [
+      "/projects/alya/1.png",
+      "/projects/alya/2.png",
+      "/projects/alya/3.png",
+      "/projects/alya/4.png",
+      "/projects/alya/5.png",
+    ],
+  },
+  {
+    title: "Grovi",
+    description: "describe your app. ship it in seconds.\nan AI-powered mobile app generator.\nspec → UI → preview, all from a prompt.",
+    links: {
+      website: "https://grovibuilds.vercel.app/",
+      testflight: "https://testflight.apple.com/join/E1ac9vN6",
+    },
+    featured: true,
+    images: [
+      "/projects/grovi/1.PNG",
+      "/projects/grovi/2.PNG",
+      "/projects/grovi/3.PNG",
+    ],
+  },
+  {
     title: "Elio Wallet",
     description: "Your Solana stablecoins avenue.\nSpend. Trade. Predict.\nAll-in-one. All on Solana.",
-    link: "https://eliowallet.vercel.app/",
+    links: {
+      github: "https://github.com/ambjn/elio-wallet",
+      website: "https://eliowallet.vercel.app/",
+    },
     featured: true,
     images: [
       "/projects/elio-wallet/1.PNG",
@@ -20,7 +53,6 @@ export const projects = [
   {
     title: "SolSettl",
     description: "split bills. settle instantly.\npowered by solana & stablecoins\nyour crypto-native onchain expense splitting",
-    link: "https://github.com/ambjn",
     featured: true,
     images: [
       "/projects/solsettl/1.jpg",
@@ -31,26 +63,16 @@ export const projects = [
       '/projects/solsettl/6.jpg',
     ],
   },
-
-  {
-    title: "Grovi",
-    description: "describe your app. ship it in seconds.\nAI-powered mobile app generator.\nspec → UI → preview. all from a prompt.",
-    link: "https://testflight.apple.com/join/E1ac9vN6",
-    featured: true,
-    images: [
-      "/projects/grovi/1.PNG",
-      "/projects/grovi/2.PNG",
-      "/projects/grovi/3.PNG",
-    ],
-  },
-  {
-    title: "alya",
-    description: "your AI language learning companion.\nconversational practice with real-time voice.\npowered by OpenAI & ElevenLabs TTS.",
-  },
   {
     title: "Mediasoup: Kotlin Client",
     description: "Native Android SDK for real-time A/V built on WebRTC with MediaSoup SFU.\nCurrently powers a Web3 startup with 20K+ MAU.",
-    link: "https://github.com/Huddle01/Kotlin-Client",
+    links: {
+      github: "https://github.com/Huddle01/Kotlin-Client",
+    },
+  },
+  {
+    title: "What's Next?",
+    description: "Currently exploring AI agents & on-chain infra.\nAlways building. Always shipping.",
   },
 ];
 
