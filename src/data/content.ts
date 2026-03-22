@@ -41,7 +41,7 @@ export const projects = [
     title: "Grovi",
     description: "Describe your app. Ship it in seconds.\nGrovi turns your idea into a real mobile app in seconds.",
     links: {
-      website: "https://grovibuilds.vercel.app/",
+      website: "https://www.buildwithgrovi.xyz/",
       testflight: "https://testflight.apple.com/join/E1ac9vN6",
     },
     featured: true,
