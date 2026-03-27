@@ -106,7 +106,7 @@ export const workExperience = [
   {
     company: "PillsTrade",
     role: "Dev",
-    period: "Aug 2025 - Dec 2025",
+    period: "Aug 2025",
     description: "Shipped a Telegram bot for 24/7 RWA perpetual (powered by Ostium Protocol) trading on Arbitrum & Solana.",
   },
   {
