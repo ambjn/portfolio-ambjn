@@ -38,6 +38,17 @@ export const projects = [
     ],
   },
   {
+    title: "ScreenShotKit",
+    description: "beautiful app screenshots, instantly.\ncreate stunning App Store & Play Store screenshots in seconds.",
+    links: {
+      website: "https://www.screenshotkit.xyz/",
+    },
+    featured: true,
+    images: [
+      "/projects/screenshotkit/1.png",
+    ],
+  },
+  {
     title: "Grovi",
     description: "Describe your app. Ship it in seconds.\nGrovi turns your idea into a real mobile app in seconds.",
     links: {
