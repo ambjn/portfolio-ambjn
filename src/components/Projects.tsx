@@ -96,12 +96,10 @@ const FeaturedShowcase = () => {
             </div>
 
             {/* Images */}
-            <div className="relative w-full h-[260px] flex gap-3 overflow-x-auto no-scrollbar items-center">
+            <div className="relative w-full h-[260px] flex gap-3 overflow-x-auto items-center">
               {(active.images ?? []).map((img, idx) => (
-                <motion.div
+                <div
                   key={idx}
-                  initial={{ opacity: 0, x: 12 }}
-                  animate={{ opacity: 1, x: 0, transition: { duration: 0.3, delay: idx * 0.06 } }}
                   className="h-full shrink-0 cursor-zoom-in"
                   onClick={() => setSelectedImage(img)}
                 >
@@ -110,7 +108,7 @@ const FeaturedShowcase = () => {
                     alt={`${active.title} screenshot ${idx + 1}`}
                     className="h-full w-auto object-contain rounded-xl border border-white/10 bg-black/20"
                   />
-                </motion.div>
+                </div>
               ))}
             </div>
           </motion.div>
