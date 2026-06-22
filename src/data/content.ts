@@ -22,10 +22,10 @@ export const personalInfo = {
 
 export const projects = [
   {
-    title: "alya",
-    description: "your AI language learning companion.\nconversational practice with real-time voice.",
+    title: "ALYA",
+    description: "learn Spanish the way you actually talk.\nchat & speak with an AI companion that corrects you in context.",
     links: {
-      appStore: "https://apps.apple.com/us/app/alya-your-ai-language-buddy/id6758835552",
+      appStore: "https://apps.apple.com/in/app/alya-learn-spanish-with-ai/id6758835552",
       website: "https://www.alyacompanion.xyz/",
     },
     featured: true,
@@ -35,25 +35,31 @@ export const projects = [
       "/projects/alya/3.png",
       "/projects/alya/4.png",
       "/projects/alya/5.png",
+      "/projects/alya/6.png",
+      "/projects/alya/7.png",
     ],
   },
   {
-    title: "ScreenShotKit",
-    description: "beautiful app screenshots, instantly.\ncreate stunning App Store & Play Store screenshots in seconds.",
+    title: "Journexa",
+    description: "the AI journal app that talks back.\nwrite freely, speak it, or get guided — track moods & ask your journal anything.",
     links: {
-      website: "https://www.screenshotkit.xyz/",
+      appStore: "https://apps.apple.com/us/app/journexa-ai-journal-voice/id6762561616",
+      website: "https://www.journexa.xyz/",
     },
     featured: true,
     images: [
-      "/projects/screenshotkit/1.png",
+      "/projects/journexa/1.png",
+      "/projects/journexa/2.png",
+      "/projects/journexa/3.png",
+      "/projects/journexa/4.png",
+      "/projects/journexa/5.png",
     ],
   },
   {
-    title: "Grovi",
-    description: "Describe your app. Ship it in seconds.\nGrovi turns your idea into a real mobile app in seconds.",
+    title: "Grovi Builds",
+    description: "Describe your app. Ship it in seconds.\nCreate mini apps with AI, publish them, and remix creations from other users.",
     links: {
-      website: "https://www.buildwithgrovi.xyz/",
-      testflight: "https://testflight.apple.com/join/E1ac9vN6",
+      testflight: "https://testflight.apple.com/join/d7ZHMurt",
     },
     featured: true,
     images: [
@@ -87,6 +93,17 @@ export const projects = [
       '/projects/solsettl/4.jpg',
       '/projects/solsettl/5.jpg',
       '/projects/solsettl/6.jpg',
+    ],
+  },
+  {
+    title: "ScreenShotKit",
+    description: "beautiful app screenshots, instantly.\ncreate stunning App Store & Play Store screenshots in seconds.",
+    links: {
+      website: "https://www.screenshotkit.xyz/",
+    },
+    featured: true,
+    images: [
+      "/projects/screenshotkit/1.png",
     ],
   },
   {
