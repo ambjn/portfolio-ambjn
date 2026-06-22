@@ -101,11 +101,9 @@ const FeaturedShowcase = () => {
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: 12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: idx * 0.06 }}
+                  animate={{ opacity: 1, x: 0, transition: { duration: 0.3, delay: idx * 0.06 } }}
                   className="h-full shrink-0 cursor-zoom-in"
                   onClick={() => setSelectedImage(img)}
-                  whileHover={{ scale: 1.02 }}
                 >
                   <img
                     src={img}

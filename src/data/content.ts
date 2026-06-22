@@ -69,6 +69,17 @@ export const projects = [
     ],
   },
   {
+    title: "ScreenShotKit",
+    description: "beautiful app screenshots, instantly.\ncreate stunning App Store & Play Store screenshots in seconds.",
+    links: {
+      website: "https://www.screenshotkit.xyz/",
+    },
+    featured: true,
+    images: [
+      "/projects/screenshotkit/1.png",
+    ],
+  },
+  {
     title: "Elio Wallet",
     description: "Your Solana stablecoins avenue.\nSpend. Trade. Predict.\nAll-in-one. All on Solana.",
     links: {
@@ -93,17 +104,6 @@ export const projects = [
       '/projects/solsettl/4.jpg',
       '/projects/solsettl/5.jpg',
       '/projects/solsettl/6.jpg',
-    ],
-  },
-  {
-    title: "ScreenShotKit",
-    description: "beautiful app screenshots, instantly.\ncreate stunning App Store & Play Store screenshots in seconds.",
-    links: {
-      website: "https://www.screenshotkit.xyz/",
-    },
-    featured: true,
-    images: [
-      "/projects/screenshotkit/1.png",
     ],
   },
   {
