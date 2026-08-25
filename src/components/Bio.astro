@@ -1,12 +1,14 @@
 ---
 import { personalInfo } from "../data/content";
+import SocialLinks from "./SocialLinks.astro";
 ---
 
 <section id="about" class="relative pt-8 sm:pt-32">
   <div class="relative z-10 flex flex-col items-center text-center">
     <h1 class="mb-4 bg-linear-to-b from-white via-white/90 to-white/60 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:mb-6 sm:text-5xl md:text-6xl">{personalInfo.name}</h1>
-    {personalInfo.tagline && <p class="mb-6 text-lg italic text-neutral-300 sm:mb-8 sm:text-xl">{personalInfo.tagline}</p>}
+    {personalInfo.tagline && <p class="mb-4 text-lg italic text-neutral-300 sm:mb-6 sm:text-xl">{personalInfo.tagline}</p>}
     <p class="max-w-2xl whitespace-pre-line text-base leading-relaxed text-neutral-400 sm:text-lg">{personalInfo.bio}</p>
+    <SocialLinks />
   </div>
   <div aria-hidden="true" class="pointer-events-none absolute top-1/2 left-1/2 -z-10 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-neutral-800/20 blur-[80px] sm:size-125 sm:blur-[100px]"></div>
 </section>
