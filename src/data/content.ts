@@ -89,10 +89,7 @@ export const projects: Project[] = [
   {
     title: "Elio Wallet",
     description: "Your Solana stablecoins avenue.\nSpend. Trade. Predict.\nLive on the Solana dApp Store with 173+ ratings.",
-    links: {
-      github: "https://github.com/ambjn/elio-wallet",
-      live: "https://eliowallet.vercel.app/",
-    },
+
     images: [
       "/projects/elio-wallet/1.PNG",
       "/projects/elio-wallet/2.PNG",
