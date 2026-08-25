@@ -73,9 +73,9 @@ const FeaturedShowcase = () => {
 
   return (
     <>
-      <div className="rounded-3xl border border-white/10 bg-white/5 overflow-hidden">
+      <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
         {/* Tab bar */}
-        <div id={tabListId} role="tablist" aria-label="Featured projects" className="flex overflow-x-auto border-b border-white/10">
+        <div id={tabListId} role="tablist" aria-label="Featured projects" className="flex snap-x snap-mandatory overflow-x-auto border-b border-white/10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {featuredProjects.map((p, i) => (
             <button
               key={i}
@@ -88,7 +88,7 @@ const FeaturedShowcase = () => {
               aria-selected={i === activeIndex}
               aria-controls={`${tabListId}-panel`}
               tabIndex={i === activeIndex ? 0 : -1}
-              className={`relative px-5 py-3.5 text-sm font-medium whitespace-nowrap transition-colors duration-200 ${
+              className={`relative min-h-12 snap-start px-4 py-3.5 text-sm font-medium whitespace-nowrap transition-colors duration-200 sm:px-5 ${
                 i === activeIndex ? "text-white" : "text-neutral-500 hover:text-neutral-300"
               }`}
             >
@@ -96,7 +96,7 @@ const FeaturedShowcase = () => {
               {i === activeIndex && (
                 <motion.div
                   layoutId="tab-indicator"
-                  className="absolute bottom-0 left-0 right-0 h-px bg-white"
+                  className="absolute right-0 bottom-0 left-0 h-px bg-white"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
@@ -114,11 +114,11 @@ const FeaturedShowcase = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 p-7 md:p-10 items-center"
+            className="grid grid-cols-1 items-center gap-6 p-5 sm:p-7 md:grid-cols-2 md:gap-8 md:p-10"
           >
             {/* Info */}
             <div className="flex flex-col justify-center items-start">
-              <h3 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-linear-to-r from-white to-white/60 mb-3">
+              <h3 className="mb-3 bg-linear-to-r from-white to-white/60 bg-clip-text text-2xl font-bold text-transparent sm:text-3xl md:text-4xl">
                 {active.title}
               </h3>
               <p className="text-base text-neutral-400 leading-relaxed whitespace-pre-line mb-7">
@@ -128,19 +128,19 @@ const FeaturedShowcase = () => {
             </div>
 
             {/* Images */}
-            <div className="relative w-full h-[260px] flex gap-3 overflow-x-auto items-center">
+            <div className="relative flex h-55 w-full snap-x snap-mandatory items-center gap-3 overflow-x-auto [scrollbar-width:none] sm:h-65 [&::-webkit-scrollbar]:hidden">
               {(active.images ?? []).map((img, idx) => (
                 <button
                   type="button"
                   key={idx}
-                  className="h-full shrink-0 cursor-zoom-in rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  className="h-full max-w-[85vw] shrink-0 snap-center cursor-zoom-in rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:max-w-none"
                   onClick={() => setSelectedImage(img)}
                   aria-label={`Open ${active.title} screenshot ${idx + 1}`}
                 >
                   <img
                     src={img}
                     alt={`${active.title} screenshot ${idx + 1}`}
-                    className="h-full w-auto object-contain rounded-xl border border-white/10 bg-black/20"
+                    className="h-full max-w-full rounded-xl border border-white/10 bg-black/20 object-contain"
                   />
                 </button>
               ))}
@@ -162,13 +162,13 @@ const FeaturedShowcase = () => {
             role="dialog"
             aria-modal="true"
             aria-label="Project screenshot preview"
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-10 cursor-zoom-out"
+            className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-black/90 p-3 backdrop-blur-sm sm:p-4 md:p-10"
           >
             <button
               ref={closeButtonRef}
               type="button"
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 z-10 rounded-full border border-white/20 bg-black/60 px-4 py-2 text-sm text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="absolute top-3 right-3 z-10 min-h-11 rounded-full border border-white/20 bg-black/60 px-4 py-2 text-sm text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:top-4 sm:right-4"
             >
               Close <span aria-hidden="true">×</span>
             </button>
@@ -190,7 +190,7 @@ const FeaturedShowcase = () => {
 
 const RegularProject = ({ project, index }: { project: Project; index: number }) => (
   <motion.div
-    className="px-6 py-7 flex flex-col gap-4 rounded-2xl bg-white/5 border border-white/10"
+    className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/5 px-5 py-6 sm:px-6 sm:py-7"
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
@@ -206,15 +206,15 @@ const RegularProject = ({ project, index }: { project: Project; index: number })
 
 export default function Projects() {
   return (
-    <section id="projects" className="pt-20 pb-10">
+    <section id="projects" className="pt-16 pb-8 sm:pt-20 sm:pb-10">
       <motion.h2
-        className="text-xl sm:text-2xl font-semibold mb-8 sm:mb-10 flex items-center gap-3"
+        className="mb-8 flex items-center gap-3 text-xl font-semibold sm:mb-10 sm:text-2xl"
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <span className="w-8 h-px bg-white/20" />
+        <span className="h-px w-8 bg-white/20" />
         Featured Work ☆
       </motion.h2>
 

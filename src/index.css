@@ -20,6 +20,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100%;
   position: relative;
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {

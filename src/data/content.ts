@@ -124,6 +124,13 @@ export const projects: Project[] = [
     ],
   },
   {
+    title: "Pillow",
+    description: "browse crypto markets & trade Hyperliquid perpetuals from mobile.\nbuilt with Expo, Convex, embedded wallets & Hyperliquid.",
+    links: {
+      github: "https://github.com/ambjn/pillow",
+    },
+  },
+  {
     title: "Mediasoup: Kotlin Client",
     description: "Native Android SDK for real-time A/V built on WebRTC with MediaSoup SFU.\nCurrently powers a Web3 startup with 20K+ MAU.",
     links: {

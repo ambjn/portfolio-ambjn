@@ -2,13 +2,13 @@
 import { workExperience } from "../data/content";
 ---
 
-<section id="work" class="py-14">
+<section id="work" class="py-12 sm:py-14">
   <h2 class="mb-8 flex items-center gap-3 text-xl font-semibold sm:mb-12 sm:text-2xl">
     <span aria-hidden="true" class="h-px w-8 bg-white/20"></span> Work Experience
   </h2>
-  <ol class="relative ml-3 space-y-12 border-l border-white/10">
+  <ol class="relative ml-2 space-y-10 border-l border-white/10 sm:ml-3 sm:space-y-12">
     {workExperience.map((job) => (
-      <li class="group relative pl-8 sm:pl-12">
+      <li class="group relative pl-6 sm:pl-12">
         <div aria-hidden="true" class="absolute top-2 left-[-5px] h-2.5 w-2.5 rounded-full border border-neutral-600 bg-neutral-800 transition-colors duration-300 group-hover:border-white group-hover:bg-white"></div>
         <div class="mb-2 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
           <h3 class="text-lg font-medium text-white transition-colors group-hover:text-blue-200">{job.company}</h3>
