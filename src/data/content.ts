@@ -1,4 +1,5 @@
 export type ProjectLinks = {
+  live?: string;
   github?: string;
   appStore?: string;
   testflight?: string;
@@ -16,7 +17,7 @@ export type Project = {
 export const personalInfo = {
   name: "Amber J",
   tagline: "engineering things that (mostly) work",
-  bio: "25 y/o dev with 3+ years across AI, Web3 & Robotics.\nshipping mobile apps, A/V SDKs & AI-powered products.",
+  bio: "26 y/o dev with 4+ years across AI, Web3 & Robotics.\nshipping mobile apps, A/V SDKs & AI-powered products.",
   email: "jainanuamber@gmail.com",
 } as const;
 
@@ -70,7 +71,6 @@ export const projects: Project[] = [
     description: "describe an app and get a standalone Flutter project with a live web preview.\ndownload production-ready source for Android, iOS, and web.",
     links: {
       website: "https://jackfruit.diy/",
-      github: "https://github.com/ambjn/novi",
     },
   },
   {
@@ -91,10 +91,10 @@ export const projects: Project[] = [
   },
   {
     title: "Elio Wallet",
-    description: "Your Solana stablecoins avenue.\nSpend. Trade. Predict.\nAll-in-one. All on Solana.",
+    description: "Your Solana stablecoins avenue.\nSpend. Trade. Predict.\nLive on the Solana dApp Store with 173+ ratings.",
     links: {
       github: "https://github.com/ambjn/elio-wallet",
-      website: "https://eliowallet.vercel.app/",
+      live: "https://eliowallet.vercel.app/",
     },
     images: [
       "/projects/elio-wallet/1.PNG",
@@ -118,7 +118,7 @@ export const projects: Project[] = [
     title: "Pillow",
     description: "browse crypto markets & trade Hyperliquid perpetuals from mobile.\nbuilt with Expo, Convex, embedded wallets & Hyperliquid.",
     links: {
-      github: "https://github.com/ambjn/pillow",
+      testflight: "https://testflight.apple.com/join/GnqSmBgb",
     },
     images: ["/projects/pillow/1.png"],
   },

@@ -2,20 +2,22 @@
 import { workExperience } from "../data/content";
 ---
 
-<section id="work" class="py-14 sm:py-20">
-  <h2 class="mb-8 flex items-center gap-3 text-xl font-semibold sm:mb-12 sm:text-2xl">
-    <span aria-hidden="true" class="h-px w-8 bg-white/20"></span> Work Experience
+<section id="work" class="mt-10 border-t border-white/10 py-16 sm:mt-16 sm:py-24">
+  <h2 class="mb-10 flex items-center gap-3 text-xl font-semibold sm:mb-14 sm:text-2xl">
+    <span aria-hidden="true" class="h-px w-8 bg-white/20"></span> Experience
   </h2>
-  <ol class="relative ml-2 space-y-10 border-l border-white/10 sm:ml-3 sm:space-y-12">
+  <ol class="relative ml-2 border-l border-white/10 sm:ml-3">
     {workExperience.map((job) => (
-      <li class="group relative pl-6 sm:pl-12">
-        <div aria-hidden="true" class="absolute top-2 left-[-5px] h-2.5 w-2.5 rounded-full border border-neutral-600 bg-neutral-800 transition-colors duration-300 group-hover:border-white group-hover:bg-white"></div>
-        <div class="mb-2 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
-          <h3 class="text-lg font-medium text-white transition-colors group-hover:text-blue-200">{job.company}</h3>
-          <time class="font-mono text-sm text-neutral-500">{job.period}</time>
+      <li class="group relative pb-12 pl-7 last:pb-0 sm:pb-16 sm:pl-12">
+        <div aria-hidden="true" class="absolute top-1.5 left-[-5px] size-2.5 rounded-full border border-neutral-600 bg-[#0a0a0a] transition-colors duration-200 group-hover:border-white group-hover:bg-white"></div>
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+          <div>
+            <h3 class="text-lg font-medium text-white transition-colors group-hover:text-blue-200">{job.company}</h3>
+            <p class="mt-1 text-sm font-medium text-neutral-400">{job.role}</p>
+          </div>
+          <time class="shrink-0 font-mono text-xs tracking-wide text-neutral-500 sm:pt-1">{job.period}</time>
         </div>
-        <p class="mb-3 font-medium text-neutral-400">{job.role}</p>
-        <p class="max-w-2xl whitespace-pre-line text-sm leading-relaxed text-neutral-400">{job.description}</p>
+        <p class="mt-4 max-w-2xl whitespace-pre-line text-sm leading-6 text-neutral-400">{job.description}</p>
       </li>
     ))}
   </ol>

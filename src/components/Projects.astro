@@ -2,6 +2,7 @@
 import { projects, type ProjectLinks } from "../data/content";
 
 const linkLabels: Record<keyof ProjectLinks, string> = {
+  live: "Live",
   github: "GitHub",
   appStore: "App Store",
   testflight: "TestFlight",
@@ -38,9 +39,9 @@ const orderedProjects = [
 
 ---
 
-<section id="projects" class="pt-16 pb-8 sm:pt-20 sm:pb-10">
-  <h2 class="mb-8 flex items-center gap-3 text-xl font-semibold sm:mb-10 sm:text-2xl">
-    <span aria-hidden="true" class="h-px w-8 bg-white/20"></span> Projects
+<section id="projects" class="mt-10 border-t border-white/10 pt-16 pb-8 sm:mt-16 sm:pt-24 sm:pb-10">
+  <h2 class="mb-10 flex items-center gap-3 text-xl font-semibold sm:mb-14 sm:text-2xl">
+    <span aria-hidden="true" class="h-px w-8 bg-white/20"></span> Work
   </h2>
   <div data-project-grid class="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-flow-dense lg:auto-rows-[4px] lg:grid-cols-6">
     {orderedProjects.map((project, index) => (
