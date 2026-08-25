@@ -4,12 +4,12 @@ import { projects, type ProjectLinks } from "../data/content";
 const linkLabels: Record<keyof ProjectLinks, string> = {
   live: "Live",
   preview: "Preview",
-  component: "Component",
+  component: "Convex Component",
   github: "GitHub",
   appStore: "App Store",
   testflight: "TestFlight",
   website: "Website",
-  npm: "npm",
+  npm: "NPM",
 };
 
 const getProjectLinks = (links?: ProjectLinks) =>
@@ -30,7 +30,7 @@ const desktopCardLayouts = [
   "lg:col-span-2",
   "lg:col-span-2",
   "lg:col-span-2",
-  "lg:col-span-2",
+  "lg:col-span-2 min-h-48",
 ];
 
 const priority = new Map(["Jackfruit", "Grovi", "Pillow"].map((title, index) => [title, index]));

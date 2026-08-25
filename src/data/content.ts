@@ -77,20 +77,13 @@ export const projects: Project[] = [
     },
   },
   {
-    title: "Sprout",
-    description: "privacy-first analytics for React Native Expo apps, powered entirely by your own Convex deployment.\nan Expo SDK, Convex component, CLI, and local dashboard — with no analytics infra to host.",
+    title: "Sprout Analytics",
+    description: "app analytics, insights, and error tracking for React Native apps.\nsession tracking, custom events, and crash reporting, all inside your own Convex deployment.",
     links: {
-      component: "https://www.convex.dev/components/sprout-convex/analytics",
       preview: "https://sprout-convex-analytics.vercel.app/",
       github: "https://github.com/ambjn/sprout",
       npm: "https://www.npmjs.com/package/@sprout-convex/analytics",
-    },
-  },
-  {
-    title: "ScreenShotKit",
-    description: "beautiful app screenshots, instantly.\ncreate stunning App Store & Play Store screenshots in seconds.",
-    links: {
-      website: "https://www.screenshotkit.xyz/",
+      component: "https://www.convex.dev/components/sprout-convex/analytics",
     },
   },
   {
@@ -108,16 +101,11 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "SolSettl",
-    description: "split bills. settle instantly.\npowered by solana & stablecoins\nyour crypto-native onchain expense splitting",
-    images: [
-      "/projects/solsettl/1.jpg",
-      "/projects/solsettl/2.jpg",
-      "/projects/solsettl/3.jpg",
-      "/projects/solsettl/4.jpg",
-      "/projects/solsettl/5.jpg",
-      "/projects/solsettl/6.jpg",
-    ],
+    title: "ScreenShotKit",
+    description: "beautiful app screenshots, instantly.\ncreate stunning App Store & Play Store screenshots in seconds.",
+    links: {
+      website: "https://www.screenshotkit.xyz/",
+    },
   },
   {
     title: "Pillow",
