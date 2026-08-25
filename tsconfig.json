@@ -5,11 +5,9 @@
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "allowJs": true,
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "isolatedModules": true,
-    "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "types": ["astro/client", "vite/client"]

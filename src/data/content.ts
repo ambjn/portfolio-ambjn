@@ -118,9 +118,9 @@ export const projects: Project[] = [
       "/projects/solsettl/1.jpg",
       "/projects/solsettl/2.jpg",
       "/projects/solsettl/3.jpg",
-      '/projects/solsettl/4.jpg',
-      '/projects/solsettl/5.jpg',
-      '/projects/solsettl/6.jpg',
+      "/projects/solsettl/4.jpg",
+      "/projects/solsettl/5.jpg",
+      "/projects/solsettl/6.jpg",
     ],
   },
   {

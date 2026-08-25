@@ -1,5 +1,4 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { projects, type Project, type ProjectLinks } from "../data/content";
 
 const ArrowUpRight = ({ className }: { className?: string }) => (
@@ -8,7 +7,7 @@ const ArrowUpRight = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const LINK_LABELS: Record<string, string> = {
+const LINK_LABELS: Record<keyof ProjectLinks, string> = {
   github: "GitHub",
   appStore: "App Store",
   testflight: "TestFlight",
@@ -18,7 +17,9 @@ const LINK_LABELS: Record<string, string> = {
 
 const ProjectLinks = ({ links, size = "md" }: { links?: ProjectLinks; size?: "sm" | "md" }) => {
   if (!links) return null;
-  const entries = (Object.entries(links) as [string, string | undefined][]).filter((entry): entry is [string, string] => !!entry[1]);
+  const entries = (Object.entries(links) as [keyof ProjectLinks, string | undefined][]).filter(
+    (entry): entry is [keyof ProjectLinks, string] => Boolean(entry[1]),
+  );
   if (!entries.length) return null;
 
   const base = size === "sm"
@@ -35,7 +36,7 @@ const ProjectLinks = ({ links, size = "md" }: { links?: ProjectLinks; size?: "sm
           rel="noopener noreferrer"
           className={`${base} bg-white/10 hover:bg-white/20 text-white border-white/10 hover:border-white/20`}
         >
-          {LINK_LABELS[key] ?? key} <ArrowUpRight className={size === "sm" ? "w-3 h-3" : "w-4 h-4"} />
+          {LINK_LABELS[key]} <ArrowUpRight className={size === "sm" ? "size-3" : "size-4"} />
         </a>
       ))}
     </div>
@@ -74,11 +75,10 @@ const FeaturedShowcase = () => {
   return (
     <>
       <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-        {/* Tab bar */}
         <div id={tabListId} role="tablist" aria-label="Featured projects" className="flex snap-x snap-mandatory overflow-x-auto border-b border-white/10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {featuredProjects.map((p, i) => (
             <button
-              key={i}
+              key={p.title}
               onClick={() => setActiveIndex(i)}
               onKeyDown={(event) => {
                 if (event.key === "ArrowRight") selectAdjacentTab(1);
@@ -93,30 +93,16 @@ const FeaturedShowcase = () => {
               }`}
             >
               {p.title}
-              {i === activeIndex && (
-                <motion.div
-                  layoutId="tab-indicator"
-                  className="absolute right-0 bottom-0 left-0 h-px bg-white"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
+              {i === activeIndex && <span className="absolute right-0 bottom-0 left-0 h-px bg-white" />}
             </button>
           ))}
         </div>
 
-        {/* Content */}
-        <AnimatePresence mode="wait">
-          <motion.div
+          <div
             id={`${tabListId}-panel`}
             role="tabpanel"
-            key={activeIndex}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
             className="grid grid-cols-1 items-center gap-6 p-5 sm:p-7 md:grid-cols-2 md:gap-8 md:p-10"
           >
-            {/* Info */}
             <div className="flex flex-col justify-center items-start">
               <h3 className="mb-3 bg-linear-to-r from-white to-white/60 bg-clip-text text-2xl font-bold text-transparent sm:text-3xl md:text-4xl">
                 {active.title}
@@ -127,12 +113,11 @@ const FeaturedShowcase = () => {
               <ProjectLinks links={active.links} />
             </div>
 
-            {/* Images */}
             <div className="relative flex h-55 w-full snap-x snap-mandatory items-center gap-3 overflow-x-auto [scrollbar-width:none] sm:h-65 [&::-webkit-scrollbar]:hidden">
               {(active.images ?? []).map((img, idx) => (
                 <button
                   type="button"
-                  key={idx}
+                  key={img}
                   className="h-full max-w-[85vw] shrink-0 snap-center cursor-zoom-in rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:max-w-none"
                   onClick={() => setSelectedImage(img)}
                   aria-label={`Open ${active.title} screenshot ${idx + 1}`}
@@ -145,17 +130,11 @@ const FeaturedShowcase = () => {
                 </button>
               ))}
             </div>
-          </motion.div>
-        </AnimatePresence>
+          </div>
       </div>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+      {selectedImage && (
+          <div
             onMouseDown={(event) => {
               if (event.target === event.currentTarget) setSelectedImage(null);
             }}
@@ -172,59 +151,46 @@ const FeaturedShowcase = () => {
             >
               Close <span aria-hidden="true">×</span>
             </button>
-            <motion.img
+            <img
               src={selectedImage}
               alt={`${active.title} project screenshot`}
               className="max-w-full max-h-full object-contain rounded-lg shadow-2xl cursor-default"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
             />
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+      )}
     </>
   );
 };
 
-const RegularProject = ({ project, index }: { project: Project; index: number }) => (
-  <motion.div
+const RegularProject = ({ project }: { project: Project }) => (
+  <article
     className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/5 px-5 py-6 sm:px-6 sm:py-7"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
   >
     <h3 className="text-xl font-semibold">{project.title}</h3>
     <p className="text-neutral-400 leading-relaxed text-sm whitespace-pre-line">
       {project.description}
     </p>
     <ProjectLinks links={project.links} size="sm" />
-  </motion.div>
+  </article>
 );
 
 export default function Projects() {
   return (
     <section id="projects" className="pt-16 pb-8 sm:pt-20 sm:pb-10">
-      <motion.h2
+      <h2
         className="mb-8 flex items-center gap-3 text-xl font-semibold sm:mb-10 sm:text-2xl"
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
       >
         <span className="h-px w-8 bg-white/20" />
         Featured Work ☆
-      </motion.h2>
+      </h2>
 
       <div className="flex flex-col gap-6">
         <FeaturedShowcase />
 
         {regularProjects.length > 0 && (
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-            {regularProjects.map((project, index) => (
-              <RegularProject key={project.title} project={project} index={index} />
+            {regularProjects.map((project) => (
+              <RegularProject key={project.title} project={project} />
             ))}
           </div>
         )}
