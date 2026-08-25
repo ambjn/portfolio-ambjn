@@ -63,9 +63,10 @@ export const projects: Project[] = [
       testflight: "https://testflight.apple.com/join/d7ZHMurt",
     },
     images: [
-      "/projects/grovi/1.PNG",
-      "/projects/grovi/2.PNG",
-      "/projects/grovi/3.PNG",
+      "/projects/grovi/1.png",
+      "/projects/grovi/2.png",
+      "/projects/grovi/3.png",
+      "/projects/grovi/4.png",
     ],
   },
   {
@@ -124,7 +125,12 @@ export const projects: Project[] = [
     links: {
       testflight: "https://testflight.apple.com/join/GnqSmBgb",
     },
-    images: ["/projects/pillow/1.png"],
+    images: [
+      "/projects/pillow/1.png",
+      "/projects/pillow/2.png",
+      "/projects/pillow/3.png",
+      "/projects/pillow/4.png",
+    ],
   },
   {
     title: "Mediasoup: Kotlin Client",
@@ -155,7 +161,7 @@ export const workExperience = [
   {
     company: "Nosh Robotics",
     role: "SDE Intern",
-    period: "Oct 2022 - Apr 2023",
+    period: "Aug 2022 - Apr 2023",
     description: "Owned end-to-end development of Android robotics applications.\nLed Jetpack Compose migration for enhanced UX.\nDrove performance optimizations informed by user feedback.",
   },
 ] as const;
