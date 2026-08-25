@@ -1,5 +1,7 @@
 export type ProjectLinks = {
   live?: string;
+  preview?: string;
+  component?: string;
   github?: string;
   appStore?: string;
   testflight?: string;
@@ -77,6 +79,8 @@ export const projects: Project[] = [
     title: "Sprout",
     description: "privacy-first analytics for React Native Expo apps, powered entirely by your own Convex deployment.\nan Expo SDK, Convex component, CLI, and local dashboard — with no analytics infra to host.",
     links: {
+      component: "https://www.convex.dev/components/sprout-convex/analytics",
+      preview: "https://sprout-convex-analytics.vercel.app/",
       github: "https://github.com/ambjn/sprout",
       npm: "https://www.npmjs.com/package/@sprout-convex/analytics",
     },

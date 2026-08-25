@@ -3,6 +3,8 @@ import { projects, type ProjectLinks } from "../data/content";
 
 const linkLabels: Record<keyof ProjectLinks, string> = {
   live: "Live",
+  preview: "Preview",
+  component: "Component",
   github: "GitHub",
   appStore: "App Store",
   testflight: "TestFlight",
@@ -10,7 +12,7 @@ const linkLabels: Record<keyof ProjectLinks, string> = {
   npm: "npm",
 };
 
-const getLinks = (links?: ProjectLinks) =>
+const getProjectLinks = (links?: ProjectLinks) =>
   links
     ? (Object.entries(links) as [keyof ProjectLinks, string | undefined][]).filter(
         (entry): entry is [keyof ProjectLinks, string] => Boolean(entry[1]),
@@ -19,8 +21,8 @@ const getLinks = (links?: ProjectLinks) =>
 
 const desktopCardLayouts = [
   "lg:col-span-4",
-  "lg:col-span-2",
-  "lg:col-span-2",
+  "lg:col-span-2 lg:min-h-60",
+  "lg:col-span-2 lg:min-h-60",
   "lg:col-span-2",
   "lg:col-span-2",
   "lg:col-span-4",
@@ -31,29 +33,32 @@ const desktopCardLayouts = [
   "lg:col-span-2",
 ];
 
-const priorityProjects = ["Jackfruit", "Sprout", "Pillow"];
-const orderedProjects = [
-  ...priorityProjects.map((title) => projects.find((project) => project.title === title)),
-  ...projects.filter((project) => !priorityProjects.includes(project.title)),
-].filter((project) => project !== undefined);
+const priority = new Map(["Jackfruit", "Sprout", "Pillow"].map((title, index) => [title, index]));
+const orderedProjects = projects
+  .map((project, sourceIndex) => ({
+    ...project,
+    links: getProjectLinks(project.links),
+    sourceIndex,
+  }))
+  .sort((a, b) => (priority.get(a.title) ?? a.sourceIndex + priority.size) - (priority.get(b.title) ?? b.sourceIndex + priority.size));
 
 ---
 
-<section id="projects" class="mt-10 border-t border-white/10 pt-16 pb-8 sm:mt-16 sm:pt-24 sm:pb-10">
+<section id="projects" class="mx-auto mt-10 max-w-4xl border-t border-white/10 pt-16 pb-8 sm:mt-16 sm:pt-24 sm:pb-10">
   <h2 class="mb-10 flex items-center gap-3 text-xl font-semibold sm:mb-14 sm:text-2xl">
     <span aria-hidden="true" class="h-px w-8 bg-white/20"></span> Work
   </h2>
-  <div data-project-grid class="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-flow-dense lg:auto-rows-[4px] lg:grid-cols-6">
+  <div data-project-grid class="grid grid-cols-1 items-start gap-3 sm:grid-cols-2 lg:grid-flow-dense lg:auto-rows-[4px] lg:grid-cols-6">
     {orderedProjects.map((project, index) => (
-      <article data-project-card class:list={["group flex self-start flex-col rounded-2xl border border-white/10 bg-white/5 px-5 py-5 transition-colors hover:border-white/20 hover:bg-white/[0.07] sm:px-6 sm:py-6", desktopCardLayouts[index]]}>
+      <article data-project-card class:list={["group flex self-start flex-col rounded-xl border border-white/10 bg-white/5 p-4 transition-colors hover:border-white/20 hover:bg-white/[0.07] sm:p-5", desktopCardLayouts[index]]}>
         <div class="flex items-center justify-between gap-3">
-          <h3 class="text-xl font-semibold text-white">{project.title}</h3>
+          <h3 class="text-lg font-semibold text-white">{project.title}</h3>
           {project.images?.length && (
             <button
               type="button"
               data-screenshots={JSON.stringify(project.images)}
               data-project-title={project.title}
-              class="grid size-9 shrink-0 place-items-center rounded-full border border-white/20 bg-white/15 text-base text-white transition-colors hover:bg-white/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              class="grid size-11 shrink-0 place-items-center rounded-full border border-white/20 bg-white/15 text-base text-white transition-colors hover:bg-white/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:size-9"
               aria-label={`View ${project.title} screenshots`}
               title="View screenshots"
             >
@@ -65,15 +70,15 @@ const orderedProjects = [
             </button>
           )}
         </div>
-        <p class="mt-3 whitespace-pre-line text-sm leading-relaxed text-neutral-400">{project.description}</p>
-        {getLinks(project.links).length > 0 && (
-          <div class="mt-5 flex flex-wrap gap-2">
-            {getLinks(project.links).map(([key, href]) => (
+        <p class="mt-3 whitespace-pre-line text-sm leading-6 text-neutral-400">{project.description}</p>
+        {project.links.length > 0 && (
+          <div class="mt-4 flex flex-wrap gap-2">
+            {project.links.map(([key, href]) => (
               <a
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex min-h-9 items-center gap-1.5 rounded-full border border-white/10 bg-white/10 px-3.5 py-1.5 text-xs font-medium text-white transition-colors hover:border-white/20 hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                class="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-white/10 bg-white/10 px-3.5 py-1.5 text-xs font-medium text-white transition-colors hover:border-white/20 hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:min-h-9"
               >
                 {linkLabels[key]}
                 <span aria-hidden="true">↗</span>
