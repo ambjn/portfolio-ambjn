@@ -42,9 +42,9 @@ const orderedProjects = [
   <h2 class="mb-8 flex items-center gap-3 text-xl font-semibold sm:mb-10 sm:text-2xl">
     <span aria-hidden="true" class="h-px w-8 bg-white/20"></span> Projects
   </h2>
-  <div class="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-6">
+  <div data-project-grid class="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-flow-dense lg:auto-rows-[4px] lg:grid-cols-6">
     {orderedProjects.map((project, index) => (
-      <article class:list={["group flex self-start flex-col rounded-2xl border border-white/10 bg-white/5 px-5 py-5 transition-colors hover:border-white/20 hover:bg-white/[0.07] sm:px-6 sm:py-6", desktopCardLayouts[index]]}>
+      <article data-project-card class:list={["group flex self-start flex-col rounded-2xl border border-white/10 bg-white/5 px-5 py-5 transition-colors hover:border-white/20 hover:bg-white/[0.07] sm:px-6 sm:py-6", desktopCardLayouts[index]]}>
         <div class="flex items-center justify-between gap-3">
           <h3 class="text-xl font-semibold text-white">{project.title}</h3>
           {project.images?.length && (
@@ -105,6 +105,31 @@ const orderedProjects = [
 </dialog>
 
 <script>
+  const projectGrid = document.querySelector<HTMLElement>("[data-project-grid]");
+  const projectCards = document.querySelectorAll<HTMLElement>("[data-project-card]");
+
+  const packProjectGrid = () => {
+    if (!projectGrid) return;
+    if (!window.matchMedia("(min-width: 64rem)").matches) {
+      projectCards.forEach((card) => card.style.removeProperty("grid-row-end"));
+      return;
+    }
+
+    const styles = getComputedStyle(projectGrid);
+    const rowHeight = Number.parseFloat(styles.gridAutoRows);
+    const rowGap = Number.parseFloat(styles.rowGap);
+    projectCards.forEach((card) => {
+      card.style.removeProperty("grid-row-end");
+      const span = Math.ceil((card.scrollHeight + rowGap) / (rowHeight + rowGap));
+      card.style.gridRowEnd = `span ${span}`;
+    });
+  };
+
+  const resizeObserver = new ResizeObserver(packProjectGrid);
+  projectCards.forEach((card) => resizeObserver.observe(card));
+  window.addEventListener("resize", packProjectGrid, { passive: true });
+  packProjectGrid();
+
   const dialog = document.querySelector<HTMLDialogElement>("#screenshot-dialog");
   const dialogTitle = document.querySelector<HTMLElement>("#screenshot-dialog-title");
   const imageContainer = document.querySelector<HTMLElement>("[data-dialog-images]");
