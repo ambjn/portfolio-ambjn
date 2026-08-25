@@ -26,7 +26,7 @@ export const personalInfo = {
 export const projects: Project[] = [
   {
     title: "ALYA",
-    description: "learn Spanish the way you actually talk.\nchat & speak with an AI companion that corrects you in context.",
+    description: "Learn Spanish the way you actually talk.\nChat & speak with an AI companion that corrects you in context.",
     links: {
       appStore: "https://apps.apple.com/in/app/alya-learn-spanish-with-ai/id6758835552",
       website: "https://www.alyacompanion.xyz/",
@@ -43,7 +43,7 @@ export const projects: Project[] = [
   },
   {
     title: "Journexa",
-    description: "the AI journal app that talks back.\nwrite freely, speak it, or get guided — track moods & ask your journal anything.",
+    description: "The AI journal app that talks back.\nWrite freely, speak it, or get guided — track moods & ask your journal anything.",
     links: {
       appStore: "https://apps.apple.com/us/app/journexa-ai-journal-voice/id6762561616",
       website: "https://www.journexa.xyz/",
@@ -58,7 +58,7 @@ export const projects: Project[] = [
   },
   {
     title: "Grovi",
-    description: "describe an idea and play it in seconds.\ncreate mini apps with AI, publish them, and remix what others build.",
+    description: "Describe an idea and play it in seconds.\nCreate mini apps with AI, publish them, and remix what others build.",
     links: {
       testflight: "https://testflight.apple.com/join/d7ZHMurt",
     },
@@ -71,14 +71,14 @@ export const projects: Project[] = [
   },
   {
     title: "Jackfruit",
-    description: "turn ideas into production-ready mobile apps.\nship for Android, iOS, and web in minutes with a live preview.",
+    description: "Turn ideas into production-ready mobile apps.\nShip for Android, iOS, and web in minutes with a live preview.",
     links: {
       website: "https://jackfruit.diy/",
     },
   },
   {
     title: "Sprout Analytics",
-    description: "app analytics, insights, and error tracking for React Native apps.\nsession tracking, custom events, and crash reporting, all inside your own Convex deployment.",
+    description: "App analytics, insights, and error tracking for React Native apps.\nSession tracking, custom events, and crash reporting, all inside your own Convex deployment.",
     links: {
       preview: "https://sprout-convex-analytics.vercel.app/",
       github: "https://github.com/ambjn/sprout",
@@ -102,14 +102,14 @@ export const projects: Project[] = [
   },
   {
     title: "ScreenShotKit",
-    description: "beautiful app screenshots, instantly.\ncreate stunning App Store & Play Store screenshots in seconds.",
+    description: "Beautiful app screenshots, instantly.\nCreate stunning App Store & Play Store screenshots in seconds.",
     links: {
       website: "https://www.screenshotkit.xyz/",
     },
   },
   {
     title: "Pillow",
-    description: "browse crypto markets and trade Hyperliquid perpetuals on mobile.\nbuilt with React Native, Openfort (embedded wallets), and Hyperliquid.",
+    description: "Browse crypto markets and trade Hyperliquid perpetuals on mobile.\nBuilt with React Native, Openfort (embedded wallets), and Hyperliquid.",
     links: {
       testflight: "https://testflight.apple.com/join/GnqSmBgb",
     },
