@@ -10,7 +10,6 @@ export type Project = {
   title: string;
   description: string;
   links?: ProjectLinks;
-  featured?: boolean;
   images?: string[];
 };
 
@@ -29,7 +28,6 @@ export const projects: Project[] = [
       appStore: "https://apps.apple.com/in/app/alya-learn-spanish-with-ai/id6758835552",
       website: "https://www.alyacompanion.xyz/",
     },
-    featured: true,
     images: [
       "/projects/alya/1.png",
       "/projects/alya/2.png",
@@ -47,7 +45,6 @@ export const projects: Project[] = [
       appStore: "https://apps.apple.com/us/app/journexa-ai-journal-voice/id6762561616",
       website: "https://www.journexa.xyz/",
     },
-    featured: true,
     images: [
       "/projects/journexa/1.png",
       "/projects/journexa/2.png",
@@ -62,7 +59,6 @@ export const projects: Project[] = [
     links: {
       testflight: "https://testflight.apple.com/join/d7ZHMurt",
     },
-    featured: true,
     images: [
       "/projects/grovi/1.PNG",
       "/projects/grovi/2.PNG",
@@ -76,6 +72,7 @@ export const projects: Project[] = [
       website: "https://jackfruit.diy/",
       github: "https://github.com/ambjn/novi",
     },
+    images: ["/projects/jackfruit/1.webp"],
   },
   {
     title: "Sprout",
@@ -91,10 +88,7 @@ export const projects: Project[] = [
     links: {
       website: "https://www.screenshotkit.xyz/",
     },
-    featured: true,
-    images: [
-      "/projects/screenshotkit/1.png",
-    ],
+    images: ["/projects/screenshotkit/1.png"],
   },
   {
     title: "Elio Wallet",
@@ -103,7 +97,6 @@ export const projects: Project[] = [
       github: "https://github.com/ambjn/elio-wallet",
       website: "https://eliowallet.vercel.app/",
     },
-    featured: true,
     images: [
       "/projects/elio-wallet/1.PNG",
       "/projects/elio-wallet/2.PNG",
@@ -113,7 +106,6 @@ export const projects: Project[] = [
   {
     title: "SolSettl",
     description: "split bills. settle instantly.\npowered by solana & stablecoins\nyour crypto-native onchain expense splitting",
-    featured: true,
     images: [
       "/projects/solsettl/1.jpg",
       "/projects/solsettl/2.jpg",

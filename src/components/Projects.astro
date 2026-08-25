@@ -1,0 +1,108 @@
+---
+import { projects, type ProjectLinks } from "../data/content";
+
+const linkLabels: Record<keyof ProjectLinks, string> = {
+  github: "GitHub",
+  appStore: "App Store",
+  testflight: "TestFlight",
+  website: "Website",
+  npm: "npm",
+};
+
+const getLinks = (links?: ProjectLinks) =>
+  links
+    ? (Object.entries(links) as [keyof ProjectLinks, string | undefined][]).filter(
+        (entry): entry is [keyof ProjectLinks, string] => Boolean(entry[1]),
+      )
+    : [];
+---
+
+<section id="projects" class="pt-16 pb-8 sm:pt-20 sm:pb-10">
+  <h2 class="mb-8 flex items-center gap-3 text-xl font-semibold sm:mb-10 sm:text-2xl">
+    <span aria-hidden="true" class="h-px w-8 bg-white/20"></span> Projects
+  </h2>
+  <div class="grid grid-cols-1 gap-4">
+    {projects.map((project) => (
+      <article class="group flex flex-col rounded-2xl border border-white/10 bg-white/5 px-5 py-6 transition-colors hover:border-white/20 hover:bg-white/[0.07] sm:px-6 sm:py-7">
+        <h3 class="text-xl font-semibold text-white">{project.title}</h3>
+        <p class="mt-4 flex-1 whitespace-pre-line text-sm leading-relaxed text-neutral-400">{project.description}</p>
+        {(getLinks(project.links).length > 0 || project.images?.length) && (
+          <div class="mt-5 flex flex-wrap gap-2">
+            {project.images?.length && (
+              <button
+                type="button"
+                data-screenshots={JSON.stringify(project.images)}
+                data-project-title={project.title}
+                class="inline-flex min-h-9 items-center gap-1.5 rounded-full border border-white/20 bg-white/15 px-3.5 py-1.5 text-xs font-medium text-white transition-colors hover:bg-white/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                Screenshots <span aria-hidden="true">↗</span>
+              </button>
+            )}
+            {getLinks(project.links).map(([key, href]) => (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex min-h-9 items-center gap-1.5 rounded-full border border-white/10 bg-white/10 px-3.5 py-1.5 text-xs font-medium text-white transition-colors hover:border-white/20 hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                {linkLabels[key]}
+                <span aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </div>
+        )}
+      </article>
+    ))}
+  </div>
+</section>
+
+<dialog
+  id="screenshot-dialog"
+  aria-labelledby="screenshot-dialog-title"
+  class="m-auto max-h-[92dvh] w-[min(92vw,64rem)] rounded-2xl border border-white/15 bg-[#111] p-0 text-white shadow-2xl backdrop:bg-black/85 backdrop:backdrop-blur-sm"
+>
+  <div class="flex items-center justify-between gap-4 border-b border-white/10 px-4 py-3 sm:px-5">
+    <h2 id="screenshot-dialog-title" class="truncate text-base font-semibold sm:text-lg"></h2>
+    <button
+      type="button"
+      data-close-dialog
+      class="grid size-11 shrink-0 place-items-center rounded-full border border-white/10 text-xl text-neutral-300 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      aria-label="Close screenshots"
+    >
+      ×
+    </button>
+  </div>
+  <div data-dialog-images class="flex max-h-[calc(92dvh-4.25rem)] snap-x snap-mandatory items-center gap-4 overflow-x-auto p-4 sm:p-6"></div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("#screenshot-dialog");
+  const dialogTitle = document.querySelector<HTMLElement>("#screenshot-dialog-title");
+  const imageContainer = document.querySelector<HTMLElement>("[data-dialog-images]");
+
+  document.querySelectorAll<HTMLButtonElement>("[data-screenshots]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!dialog || !dialogTitle || !imageContainer) return;
+
+      const images = JSON.parse(button.dataset.screenshots ?? "[]") as string[];
+      const projectTitle = button.dataset.projectTitle ?? "Project";
+      dialogTitle.textContent = `${projectTitle} screenshots`;
+      imageContainer.replaceChildren(
+        ...images.map((src, index) => {
+          const image = document.createElement("img");
+          image.src = src;
+          image.alt = `${projectTitle} screenshot ${index + 1}`;
+          image.loading = index === 0 ? "eager" : "lazy";
+          image.className = "max-h-[calc(92dvh-7rem)] max-w-[85vw] shrink-0 snap-center rounded-xl border border-white/10 object-contain sm:max-w-full";
+          return image;
+        }),
+      );
+      dialog.showModal();
+    });
+  });
+
+  document.querySelector<HTMLButtonElement>("[data-close-dialog]")?.addEventListener("click", () => dialog?.close());
+  dialog?.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+</script>
