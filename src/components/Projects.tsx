@@ -75,7 +75,7 @@ const FeaturedShowcase = () => {
     <>
       <div className="rounded-3xl border border-white/10 bg-white/5 overflow-hidden">
         {/* Tab bar */}
-        <div id={tabListId} role="tablist" aria-label="Featured projects" className="flex border-b border-white/10 overflow-x-auto no-scrollbar">
+        <div id={tabListId} role="tablist" aria-label="Featured projects" className="flex overflow-x-auto border-b border-white/10">
           {featuredProjects.map((p, i) => (
             <button
               key={i}
