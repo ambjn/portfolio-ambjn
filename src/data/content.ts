@@ -72,7 +72,6 @@ export const projects: Project[] = [
       website: "https://jackfruit.diy/",
       github: "https://github.com/ambjn/novi",
     },
-    images: ["/projects/jackfruit/1.webp"],
   },
   {
     title: "Sprout",
@@ -121,6 +120,7 @@ export const projects: Project[] = [
     links: {
       github: "https://github.com/ambjn/pillow",
     },
+    images: ["/projects/pillow/1.png"],
   },
   {
     title: "Mediasoup: Kotlin Client",
