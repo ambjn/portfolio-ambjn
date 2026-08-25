@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, type Project, type ProjectLinks } from "../data/content";
 
@@ -13,6 +13,7 @@ const LINK_LABELS: Record<string, string> = {
   appStore: "App Store",
   testflight: "TestFlight",
   website: "Website",
+  npm: "npm",
 };
 
 const ProjectLinks = ({ links, size = "md" }: { links?: ProjectLinks; size?: "sm" | "md" }) => {
@@ -41,23 +42,52 @@ const ProjectLinks = ({ links, size = "md" }: { links?: ProjectLinks; size?: "sm
   );
 };
 
-const featuredProjects = (projects as Project[]).filter((p) => p.featured);
-const regularProjects = (projects as Project[]).filter((p) => !p.featured);
+const featuredProjects = projects.filter((project) => project.featured);
+const regularProjects = projects.filter((project) => !project.featured);
 
 const FeaturedShowcase = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const tabListId = useId();
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const active = featuredProjects[activeIndex];
+
+  useEffect(() => {
+    if (!selectedImage) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedImage(null);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [selectedImage]);
+
+  const selectAdjacentTab = (direction: -1 | 1) => {
+    setActiveIndex((current) => (current + direction + featuredProjects.length) % featuredProjects.length);
+  };
 
   return (
     <>
       <div className="rounded-3xl border border-white/10 bg-white/5 overflow-hidden">
         {/* Tab bar */}
-        <div className="flex border-b border-white/10 overflow-x-auto no-scrollbar">
+        <div id={tabListId} role="tablist" aria-label="Featured projects" className="flex border-b border-white/10 overflow-x-auto no-scrollbar">
           {featuredProjects.map((p, i) => (
             <button
               key={i}
               onClick={() => setActiveIndex(i)}
+              onKeyDown={(event) => {
+                if (event.key === "ArrowRight") selectAdjacentTab(1);
+                if (event.key === "ArrowLeft") selectAdjacentTab(-1);
+              }}
+              role="tab"
+              aria-selected={i === activeIndex}
+              aria-controls={`${tabListId}-panel`}
+              tabIndex={i === activeIndex ? 0 : -1}
               className={`relative px-5 py-3.5 text-sm font-medium whitespace-nowrap transition-colors duration-200 ${
                 i === activeIndex ? "text-white" : "text-neutral-500 hover:text-neutral-300"
               }`}
@@ -77,6 +107,8 @@ const FeaturedShowcase = () => {
         {/* Content */}
         <AnimatePresence mode="wait">
           <motion.div
+            id={`${tabListId}-panel`}
+            role="tabpanel"
             key={activeIndex}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -98,17 +130,19 @@ const FeaturedShowcase = () => {
             {/* Images */}
             <div className="relative w-full h-[260px] flex gap-3 overflow-x-auto items-center">
               {(active.images ?? []).map((img, idx) => (
-                <div
+                <button
+                  type="button"
                   key={idx}
-                  className="h-full shrink-0 cursor-zoom-in"
+                  className="h-full shrink-0 cursor-zoom-in rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                   onClick={() => setSelectedImage(img)}
+                  aria-label={`Open ${active.title} screenshot ${idx + 1}`}
                 >
                   <img
                     src={img}
                     alt={`${active.title} screenshot ${idx + 1}`}
                     className="h-full w-auto object-contain rounded-xl border border-white/10 bg-black/20"
                   />
-                </div>
+                </button>
               ))}
             </div>
           </motion.div>
@@ -122,13 +156,26 @@ const FeaturedShowcase = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) setSelectedImage(null);
+            }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Project screenshot preview"
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-10 cursor-zoom-out"
           >
+            <button
+              ref={closeButtonRef}
+              type="button"
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 z-10 rounded-full border border-white/20 bg-black/60 px-4 py-2 text-sm text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Close <span aria-hidden="true">×</span>
+            </button>
             <motion.img
               src={selectedImage}
-              alt="Project screenshot"
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              alt={`${active.title} project screenshot`}
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl cursor-default"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -177,7 +224,7 @@ export default function Projects() {
         {regularProjects.length > 0 && (
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
             {regularProjects.map((project, index) => (
-              <RegularProject key={index} project={project} index={index} />
+              <RegularProject key={project.title} project={project} index={index} />
             ))}
           </div>
         )}

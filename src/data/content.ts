@@ -3,6 +3,7 @@ export type ProjectLinks = {
   appStore?: string;
   testflight?: string;
   website?: string;
+  npm?: string;
 };
 
 export type Project = {
@@ -18,9 +19,9 @@ export const personalInfo = {
   tagline: "engineering things that (mostly) work",
   bio: "25 y/o dev with 3+ years across AI, Web3 & Robotics.\nshipping mobile apps, A/V SDKs & AI-powered products.",
   email: "jainanuamber@gmail.com",
-};
+} as const;
 
-export const projects = [
+export const projects: Project[] = [
   {
     title: "ALYA",
     description: "learn Spanish the way you actually talk.\nchat & speak with an AI companion that corrects you in context.",
@@ -67,6 +68,22 @@ export const projects = [
       "/projects/grovi/2.PNG",
       "/projects/grovi/3.PNG",
     ],
+  },
+  {
+    title: "Jackfruit",
+    description: "describe an app and get a standalone Flutter project with a live web preview.\ndownload production-ready source for Android, iOS, and web.",
+    links: {
+      website: "https://jackfruit.diy/",
+      github: "https://github.com/ambjn/novi",
+    },
+  },
+  {
+    title: "Sprout",
+    description: "privacy-first analytics for React Native Expo apps, powered entirely by your own Convex deployment.\nan Expo SDK, Convex component, CLI, and local dashboard — with no analytics infra to host.",
+    links: {
+      github: "https://github.com/ambjn/sprout",
+      npm: "https://www.npmjs.com/package/@sprout-convex/analytics",
+    },
   },
   {
     title: "ScreenShotKit",
@@ -138,10 +155,10 @@ export const workExperience = [
     period: "Oct 2022 - Apr 2023",
     description: "Owned end-to-end development of Android robotics applications.\nLed Jetpack Compose migration for enhanced UX.\nDrove performance optimizations informed by user feedback.",
   },
-];
+] as const;
 
 export const socialLinks = [
   { label: "GitHub", href: "https://github.com/ambjn" },
   { label: "Twitter", href: "https://twitter.com/ambjnnn" },
   { label: "LinkedIn", href: "https://linkedin.com/in/ambjn" },
-];
+] as const;
