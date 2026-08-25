@@ -57,8 +57,8 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "Grovi Builds",
-    description: "Describe your app. Ship it in seconds.\nCreate mini apps with AI, publish them, and remix creations from other users.",
+    title: "Grovi",
+    description: "describe an idea and play it in seconds.\ncreate mini apps with AI, publish them, and remix what others build.",
     links: {
       testflight: "https://testflight.apple.com/join/d7ZHMurt",
     },
@@ -71,7 +71,7 @@ export const projects: Project[] = [
   },
   {
     title: "Jackfruit",
-    description: "describe an app and get a standalone Flutter project with a live web preview.\ndownload production-ready source for Android, iOS, and web.",
+    description: "turn ideas into production-ready mobile apps.\nship for Android, iOS, and web in minutes with a live preview.",
     links: {
       website: "https://jackfruit.diy/",
     },
@@ -92,7 +92,6 @@ export const projects: Project[] = [
     links: {
       website: "https://www.screenshotkit.xyz/",
     },
-    images: ["/projects/screenshotkit/1.png"],
   },
   {
     title: "Elio Wallet",
@@ -105,6 +104,7 @@ export const projects: Project[] = [
       "/projects/elio-wallet/1.PNG",
       "/projects/elio-wallet/2.PNG",
       "/projects/elio-wallet/3.PNG",
+      "/projects/elio-wallet/ratings.png",
     ],
   },
   {
@@ -121,7 +121,7 @@ export const projects: Project[] = [
   },
   {
     title: "Pillow",
-    description: "browse crypto markets & trade Hyperliquid perpetuals from mobile.\nbuilt with Expo, Convex, embedded wallets & Hyperliquid.",
+    description: "browse crypto markets and trade Hyperliquid perpetuals on mobile.\nbuilt with React Native, Openfort (embedded wallets), and Hyperliquid.",
     links: {
       testflight: "https://testflight.apple.com/join/GnqSmBgb",
     },
