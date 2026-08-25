@@ -1,10 +1,10 @@
 # Amber J — Portfolio
 
-A content-first portfolio built with Astro, Tailwind CSS, and a small React island for the interactive project gallery.
+A minimal, responsive portfolio built with Astro and Tailwind CSS. Project screenshots open in a lightweight native dialog.
 
 ```bash
 bun install
 bun run dev
 ```
 
-Run `bun run build` for a type-checked production build.
+Run `bun run lint` for linting and `bun run build` for a type-checked production build.
