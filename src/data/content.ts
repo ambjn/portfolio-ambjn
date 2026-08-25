@@ -1,34 +1,36 @@
 export type ProjectLinks = {
+  live?: string;
+  preview?: string;
+  component?: string;
   github?: string;
   appStore?: string;
   testflight?: string;
   website?: string;
+  npm?: string;
 };
 
 export type Project = {
   title: string;
   description: string;
   links?: ProjectLinks;
-  featured?: boolean;
   images?: string[];
 };
 
 export const personalInfo = {
   name: "Amber J",
   tagline: "engineering things that (mostly) work",
-  bio: "25 y/o dev with 3+ years across AI, Web3 & Robotics.\nshipping mobile apps, A/V SDKs & AI-powered products.",
+  bio: "26 y/o dev with 4+ years across AI, Web3 & Robotics.\nshipping mobile apps, A/V SDKs & AI-powered products.",
   email: "jainanuamber@gmail.com",
-};
+} as const;
 
-export const projects = [
+export const projects: Project[] = [
   {
     title: "ALYA",
-    description: "learn Spanish the way you actually talk.\nchat & speak with an AI companion that corrects you in context.",
+    description: "Learn Spanish the way you actually talk.\nChat & speak with an AI companion that corrects you in context.",
     links: {
       appStore: "https://apps.apple.com/in/app/alya-learn-spanish-with-ai/id6758835552",
       website: "https://www.alyacompanion.xyz/",
     },
-    featured: true,
     images: [
       "/projects/alya/1.png",
       "/projects/alya/2.png",
@@ -41,12 +43,11 @@ export const projects = [
   },
   {
     title: "Journexa",
-    description: "the AI journal app that talks back.\nwrite freely, speak it, or get guided — track moods & ask your journal anything.",
+    description: "The AI journal app that talks back.\nWrite freely, speak it, or get guided — track moods & ask your journal anything.",
     links: {
       appStore: "https://apps.apple.com/us/app/journexa-ai-journal-voice/id6762561616",
       website: "https://www.journexa.xyz/",
     },
-    featured: true,
     images: [
       "/projects/journexa/1.png",
       "/projects/journexa/2.png",
@@ -56,54 +57,67 @@ export const projects = [
     ],
   },
   {
-    title: "Grovi Builds",
-    description: "Describe your app. Ship it in seconds.\nCreate mini apps with AI, publish them, and remix creations from other users.",
+    title: "Grovi",
+    description: "Describe an idea and play it in seconds.\nCreate mini apps with AI, publish them, and remix what others build.",
     links: {
       testflight: "https://testflight.apple.com/join/d7ZHMurt",
     },
-    featured: true,
     images: [
-      "/projects/grovi/1.PNG",
-      "/projects/grovi/2.PNG",
-      "/projects/grovi/3.PNG",
+      "/projects/grovi/1.png",
+      "/projects/grovi/2.png",
+      "/projects/grovi/3.png",
+      "/projects/grovi/4.png",
     ],
   },
   {
-    title: "ScreenShotKit",
-    description: "beautiful app screenshots, instantly.\ncreate stunning App Store & Play Store screenshots in seconds.",
+    title: "Jackfruit",
+    description: "Turn ideas into production-ready mobile apps.\nShip for Android, iOS, and web in minutes with a live preview.",
     links: {
-      website: "https://www.screenshotkit.xyz/",
+      website: "https://jackfruit.diy/",
     },
-    featured: true,
-    images: [
-      "/projects/screenshotkit/1.png",
-    ],
+  },
+  {
+    title: "Sprout Analytics",
+    description: "App analytics, insights, and error tracking for React Native apps.\nSession tracking, custom events, and crash reporting, all inside your own Convex deployment.",
+    links: {
+      preview: "https://sprout-convex-analytics.vercel.app/",
+      github: "https://github.com/ambjn/sprout",
+      npm: "https://www.npmjs.com/package/@sprout-convex/analytics",
+      component: "https://www.convex.dev/components/sprout-convex/analytics",
+    },
   },
   {
     title: "Elio Wallet",
-    description: "Your Solana stablecoins avenue.\nSpend. Trade. Predict.\nAll-in-one. All on Solana.",
+    description: "Your Solana stablecoins avenue.\nSpend. Trade. Predict.\nLive on the Solana dApp Store with 173+ ratings.",
     links: {
       github: "https://github.com/ambjn/elio-wallet",
-      website: "https://eliowallet.vercel.app/",
+      live: "https://eliowallet.vercel.app/",
     },
-    featured: true,
     images: [
       "/projects/elio-wallet/1.PNG",
       "/projects/elio-wallet/2.PNG",
       "/projects/elio-wallet/3.PNG",
+      "/projects/elio-wallet/ratings.png",
     ],
   },
   {
-    title: "SolSettl",
-    description: "split bills. settle instantly.\npowered by solana & stablecoins\nyour crypto-native onchain expense splitting",
-    featured: true,
+    title: "ScreenShotKit",
+    description: "Beautiful app screenshots, instantly.\nCreate stunning App Store & Play Store screenshots in seconds.",
+    links: {
+      website: "https://www.screenshotkit.xyz/",
+    },
+  },
+  {
+    title: "Pillow",
+    description: "Browse crypto markets and trade Hyperliquid perpetuals on mobile.\nBuilt with React Native, Openfort (embedded wallets), and Hyperliquid.",
+    links: {
+      testflight: "https://testflight.apple.com/join/GnqSmBgb",
+    },
     images: [
-      "/projects/solsettl/1.jpg",
-      "/projects/solsettl/2.jpg",
-      "/projects/solsettl/3.jpg",
-      '/projects/solsettl/4.jpg',
-      '/projects/solsettl/5.jpg',
-      '/projects/solsettl/6.jpg',
+      "/projects/pillow/1.png",
+      "/projects/pillow/2.png",
+      "/projects/pillow/3.png",
+      "/projects/pillow/4.png",
     ],
   },
   {
@@ -135,13 +149,13 @@ export const workExperience = [
   {
     company: "Nosh Robotics",
     role: "SDE Intern",
-    period: "Oct 2022 - Apr 2023",
+    period: "Aug 2022 - Apr 2023",
     description: "Owned end-to-end development of Android robotics applications.\nLed Jetpack Compose migration for enhanced UX.\nDrove performance optimizations informed by user feedback.",
   },
-];
+] as const;
 
 export const socialLinks = [
   { label: "GitHub", href: "https://github.com/ambjn" },
   { label: "Twitter", href: "https://twitter.com/ambjnnn" },
   { label: "LinkedIn", href: "https://linkedin.com/in/ambjn" },
-];
+] as const;

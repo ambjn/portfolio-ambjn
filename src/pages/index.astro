@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Bio from "../components/Bio.astro";
+import Projects from "../components/Projects.astro";
+import Work from "../components/Work.astro";
+import { personalInfo } from "../data/content";
+
+const description = `${personalInfo.name} — developer building AI, mobile, Web3, and real-time products.`;
+---
+
+<Layout title="Amber's Portfolio" description={description}>
+  <div class="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-12">
+    <main>
+      <Bio />
+      <Projects />
+      <div class="mx-auto max-w-4xl">
+        <Work />
+      </div>
+    </main>
+  </div>
+</Layout>
