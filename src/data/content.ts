@@ -63,9 +63,9 @@ export const projects: Project[] = [
       testflight: "https://testflight.apple.com/join/d7ZHMurt",
     },
     images: [
-      "/projects/grovi/1.png",
-      "/projects/grovi/2.png",
-      "/projects/grovi/3.png",
+      "/projects/grovi/1.PNG",
+      "/projects/grovi/2.PNG",
+      "/projects/grovi/3.PNG",
       "/projects/grovi/4.png",
     ],
   },
