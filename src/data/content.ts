@@ -26,19 +26,18 @@ export const personalInfo = {
 export const projects: Project[] = [
   {
     title: "ALYA",
-    description: "Learn Spanish the way you actually talk.\nChat & speak with an AI companion that corrects you in context.",
+    description: "Learn Spanish by scrolling real videos.\nTap words for instant translations, save vocabulary, and grow ALYA as you learn.",
     links: {
-      appStore: "https://apps.apple.com/in/app/alya-learn-spanish-with-ai/id6758835552",
-      website: "https://www.alyacompanion.xyz/",
+      appStore: "https://apps.apple.com/us/app/alya-learn-spanish-daily/id6758835552",
+      website: "https://alyacompanion.xyz/",
     },
     images: [
-      "/projects/alya/1.png",
-      "/projects/alya/2.png",
-      "/projects/alya/3.png",
-      "/projects/alya/4.png",
-      "/projects/alya/5.png",
-      "/projects/alya/6.png",
-      "/projects/alya/7.png",
+      "/projects/alya/1.webp",
+      "/projects/alya/2.webp",
+      "/projects/alya/3.webp",
+      "/projects/alya/4.webp",
+      "/projects/alya/5.webp",
+      "/projects/alya/6.webp",
     ],
   },
   {
